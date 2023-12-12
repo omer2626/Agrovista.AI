@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Create account</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+
+  <style>
+    html, body {
+      height: 100%;
+    }
+    body {
+      background-image: url('../static/signup.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+
+  </style>
+</head>
+<body class="vh-100">
+  <div class="container d-flex align-items-center justify-content-center h-100" style="margin-top: 1rem; background-color: rgba(0, 0, 0, 0.2)">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+      <h2 class="text-center mb-3" >Create account</h2>
+      <form action="/signup" method="post" class="mb-3">
+        <div class="row">
+          <div class="form-group col-12 col-sm-6">
+            <label for="firstName" style="font-weight: bolder">First name:</label>
+            <input
+              name ="first_name"
+              type="text"
+              class="form-control"
+              placeholder="First name"
+              id="firstName"
+            />
+          </div>
+          <div class="form-group col-12 col-sm-6">
+            <label for="lastName" style="font-weight: bolder;">Last name:</label>
+            <input
+              name = "last_name"
+              type="text"
+              class="form-control"
+              placeholder="Last name"
+              id="lastName"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Phone" style="font-weight: bolder">Phone No:</label>
+          <input
+            name = "phone_No"
+            type="tel"
+            class="form-control"
+            placeholder="+91 "
+            id="Number"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="password" style="font-weight: bolder; color: wheat">Password:</label>
+          <input
+            name = "password"
+            type="password"
+            class="form-control"
+            placeholder="Strong password"
+            id="password"
+            required
+          />
+        </div>
+
+        <!-- <div class="form-group">
+          <label for="Area" style="font-weight: bolder;color: wheat;" >Location:</label>
+          <input
+            name = "Location"
+            type="text"
+            class="form-control"
+            id="Location"
+            placeholder="Adilabad"
+            required
+          />
+        </div> -->
+        <div class="form-group">
+          <label for="Area" style="font-weight: bolder;color: wheat;">Location:</label>
+          <select
+            name="Location"
+            class="form-control"
+            id="Location"
+          
+            required
+          >
+            <!-- <option value="">Location</option> -->
+            <option value="" disabled selected hidden>Location</option>
+            <option value="Adilabad">Adilabad</option>
+            <option value="Nizamabad">Nizamabad</option>
+            <option value="Karimnagar">Karimnagar</option>
+            <option value="Warangal">Warangal</option>
+          </select>
+        </div>
+
+
+
+        <!-- <div class="form-group">
+          <label for="Crop" style="font-weight: bolder ; color: wheat;">Crop:</label>
+          <input
+            name= "Crop"
+            type="text"
+            class="form-control"
+            placeholder="wheat"
+            id="Crop"
+            required
+          />
+        </div> -->
+
+        <div class="form-group">
+          <label for="Area" style="font-weight: bolder;color: wheat;">Crop:</label>
+          <select
+            name="Crop"
+            class="form-control"
+            id="Crop"
+          
+            required
+          >
+            <!-- <option value="">Location</option> -->
+            <option value="" disabled selected hidden>Crop</option>
+            <option value="Wheat">Wheat</option>
+            <option value="Paddy">Paddy</option>
+            <option value="Cotton">Cotton</option>
+            <option value="Maize">Maize</option>
+          </select>
+        </div>
+
+
+
+        <!-- <div class="form-check form-check-inline">
+          <label class="form-check-label" style="font-weight: bolder">
+            <input
+              type="radio"
+              name="exampleRadios"
+              id="exampleRadios1"
+              class="form-check-input"
+              value="optionOne"
+              checked
+            />
+            Man
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label" style="font-weight: bolder">
+            <input
+              type="radio"
+              name="exampleRadios"
+              id="exampleRadios2"
+              class="form-check-input"
+              value="optionTwo"
+            />
+            Woman
+          </label>
+        </div> -->
+        <button type="submit" class="btn btn-primary btn-block mb-3">
+          Create account
+        </button>
+        <div class="text-center">
+          <!-- <p>or ...</p> -->
+          <!-- <a href="/login" class="btn btn-success">Login</a> -->
+        </div>
+      </form>
+    </div>
+  </div>
+  
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>

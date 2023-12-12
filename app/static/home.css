@@ -1,0 +1,180 @@
+/* Basic styles for the navbar */
+*{
+    margin:auto;
+    padding: 0 0 5px 0;
+}
+.navbar {
+    background-color: #4b594b;
+    padding: 10px 0;
+    /* color: #fff; */
+    color:#000;
+    height: 60px;
+  }
+  
+  .container1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 3rem;
+  }
+  .logo img{
+    margin-top: -5.3rem;
+    height: 13.5rem;
+    width: 13.5rem;
+    margin-right: 5rem;
+  }
+  
+  .navbar-brand {
+    font-size: 24px;
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .navbar-nav {
+    list-style: none;
+    display: flex;
+    gap:2rem;
+    margin-top: 1rem;
+  }
+  
+  .nav-item {
+    margin: 0 15px;
+    font-size: 20px;
+  }
+  
+  /* .nav-link {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s;
+  }
+  
+  .nav-link:hover {
+    color: #ffc107;
+  } */
+
+  .nav-link{
+    text-decoration: none;
+    color :#fff;
+    padding: 5px 10px;
+    /* border:2px solid black ; */
+    transition: 0.6s ease;
+}
+.nav-link:hover{
+    background-color: #fff; 
+    color:#000;
+}
+
+  .banner {
+    background-image: url('../static/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .banner-content {
+    text-align: center;
+  }
+  
+  .banner h1 {
+    font-size: 38px;
+    /* margin-bottom: 10px; */
+    color:#fff;
+  }
+  
+  .banner p {
+    font-size: 32px;
+    color:#fff;
+  }
+
+  .content {
+    padding: 50px 0;
+  }
+  
+  .container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-right: 40rem; */
+  }
+  
+  .content-left {
+    flex: 1;
+    padding: 0 20px;
+    margin-left: 2rem;
+  }
+  
+  .content-left h2 {
+    font-size: 35px;
+    margin-bottom: 10px;
+  }
+  
+  .content-left p {
+    font-size: 26px;
+  }
+  
+  .content-right img {
+    width: 38vw;
+    height : 34vh;
+    margin-right: 8rem;
+  }
+
+  .container3 h2{
+    /* margin-top: 2rem; */
+    padding-top: 1rem;
+    margin-left: 30rem;
+    font-size: 50px;
+  }
+
+  .services{
+    background-color: #b5d3b6;;
+
+  }
+
+ /* Styles for the image grid cards */
+/* Styles for the image grid */
+.image-grid {
+    padding: 50px 0;
+  }
+  
+  .image-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .image-card {
+    flex: 0 0 calc(33.33% - 20px);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  .image-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .image-card p {
+    font-size: 22px;
+  }
+  .footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 30px 0;
+  }
+  
+  .footer p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
+
+  

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" type="text/css" href="../static/weather.css">
+</head>
+<body>
+    <header>
+        <!-- <h1>Weather Forecast</h1> -->
+        <!-- <button> Home</button> -->
+        <div>
+            <h1> Weather Forecast for upcoming four days in {{ Location }}</h1>
+        </div>
+    </header>
+
+    <main>
+       <div>
+        <!-- <p> City : Adilabad </p> -->
+       </div>
+        {% for entry in forecast_entries %}
+        <div class="weather-card">
+            <h3>{{ entry['date'] }}</h3>
+            <!-- <p class="temperature">{{ entry['temperature']-273.15 }} C</p> -->
+
+            <p class="temperature">{{ (entry['temperature'] - 273.15)|round(1) }}&#176;C</p>
+            <p class="description">{{ entry['weather_description'] }}</p>
+
+        </div>
+        {% endfor %}
+
+
+
+    </main>
+</body>
+</html>

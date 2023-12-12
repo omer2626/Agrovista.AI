@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}"> <!-- Link to your custom CSS file -->
+    <title>Basic Navbar</title>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <!-- <div class="logo">
+            <a href="/"><img src="../static/AgroVista.png" alt="Logo" /></a>
+        </div> -->
+        <div class="container1">
+            <div class="logo">
+              <img src="../static/AgroVista.png" alt="Logo" />
+              </div>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/signup">Signup</a></li>
+                <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                <!-- <li class="nav-item"><a class="nav-link" href="#">Services</a></li> -->
+                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="banner">
+        <div class="banner-content">
+            <h1>Welcome to Smart Agriculture Platform</h1>
+            <p>Growing Smarter, Not Harder: The Future of Agriculture is Here.</p>
+        </div>
+    </section>
+    <!-- Your HTML content here -->
+
+    <section class="content">
+        <div class="container2">
+            <div class="content-left">
+                <h2>Our Vision</h2>
+                <p>Revolutionizing the way we farm with cutting-edge technology and sustainable practices.</p>
+            </div>
+            <div class="content-right">
+                <img src="../static/content2.jpg" alt="Smart Agriculture Image">
+            </div>
+        </div>
+    </section>
+
+
+    <section class="services" id = "services">
+        <div class="container3">
+            <h2>Our Services</h2>
+            <!-- <P> What We Offer</P> -->
+
+            <article class="image-grid">
+                <div class="container4">
+                    <div class="image-row">
+                        <div class="image-card">
+                            <img src="../static/service1.png" alt="Image 1">
+                            <p>Disease Prediction</p>
+                        </div>
+                        <div class="image-card">
+                            <img src="../static/service2.png" alt="Image 2">
+                            <p>Fertilizer Prediction</p>
+                        </div>
+                        <div class="image-card">
+                            <img src="../static/service3.png" alt="Image 3">
+                            <p>Pest detection</p>
+                        </div>
+                    </div>
+                    <div class="image-row">
+                        <div class="image-card">
+                            <img src="../static/service4.png" alt="Image 4">
+                            <p> Weather Forecasting</p>
+                        </div>
+                        <div class="image-card">
+                            <img src="../static/service5.png" alt="Image 5">
+                            <p>IOT in Agriculture</p>
+                        </div>
+                        <div class="image-card">
+                            <img src="../static/content2.jpg" alt="Image 6">
+                            <p>Smarter Agriculture</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+    </section>
+    <section class="footer">
+        <div class="container">
+          <p>&copy; 2023 AgroVista. All rights reserved.</p>
+        </div>
+      </section>
+
+
+
+</body>
+
+</html>

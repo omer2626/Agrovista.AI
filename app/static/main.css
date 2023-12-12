@@ -1,0 +1,66 @@
+*{
+    margin:0;
+    padding:0;
+    /* font-family: 'Courier New', Courier, monospace; */
+}
+
+header{
+    background-image: url("../static/agriculture1.jpg");
+    height: 100vh;
+     background-size: cover;
+     background-position: center; 
+}
+/* ul{
+    display: flex;
+    justify-content: flex-end;
+} */
+ul{
+    /* display: inline-block; */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    list-style-type: none;
+    gap: 20px;
+    /* margin-top: 25px;  */
+     padding: 15px; 
+}
+ul li a{
+    text-decoration: none;
+    color :#fff;
+    padding: 5px 10px;
+    border:2px solid black ;
+    border-radius: 8px;
+    transition: 0.6s ease;
+}
+ul li a:hover{
+    background-color: #fff; 
+    color:#000;
+}
+/* .btn{
+    display:flex;
+    justify-content: center;
+    gap:20px;
+  
+    margin-top: 100px;
+} */
+
+/* .btn button{
+    border:#000;
+     background-color:rgb(233, 214, 178);
+    width:100px;
+    height:40px;
+    border-radius: 20px;
+    transition: 0.5s ease;
+    text-decoration: none;
+    
+}
+.btn :hover{
+    background-color: goldenrod;
+    color:antiquewhite
+} */
+h1{
+    margin-left: 33rem;
+    color:#ffffffb3;
+    font-size: 55px;
+    
+}

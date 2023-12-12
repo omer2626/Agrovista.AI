@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/fertilizer_recommendation.css"> 
+    
+</head>
+<body>
+    <section class="crop__recommendation"> 
+        <div class="heading">
+            <h1> Fertilizer Recommendation</h1>
+        </div>
+        <article class="Fertilizer__recommendation__content">
+            <form method="post" id="cropForm">
+                <!-- <div class="input-group"> -->
+                    <div class="input-group">
+                        <label for="N" style="color: white;font-size: larger;">N</label>
+                        <!-- <input type="number" id="ph_level" name="N" step="0.1" required> -->
+                        <!-- <input type="number" id="N" name="N" step="0.1" required > -->
+                        <input type="number" id="N" name="N" step="0.1" required value="{{ session.get('N', '') }}">
+                    </div>      
+                    <div class="input-group">
+                        <label for="P" style="color: white;font-size: larger;">P</label>
+                        <!-- <input type="number" id="ph_level" name="P" step="0.1" required> -->
+                        <!-- <input type="number" id="P" name="P" step="0.1" required> -->
+                        <input type="number" id="P" name="P" step="0.1" required value="{{ session.get('P', '') }}">
+                    </div>
+                    <div class="input-group">
+                        <label for="K" style="color: white;font-size: larger;">K</label>
+                        <!-- <input type="number" id="ph_level" name="K" step="0.1" required> -->
+                        <!-- <input type="number" id="K" name="K" step="0.1"> -->
+                        <input type="number" id="K" name="K" step="0.1" required value="{{ session.get('K', '') }}">
+                    </div>
+                    <div class="input-group">
+                        <label for="temperature" style="color: white;font-size: larger;">Temperature (°C)</label>
+                        <!-- <input type="number" id="temperature" name="temperature" required> -->
+                        <!-- <input type="number" id="temperature" name="temperature" required > -->
+                        <input type="number" id="temperature" name="temperature" required value="{{ session.get('temperature', '') }}">
+                    </div>
+                    <div class="input-group">
+                        <label for="humidity" style="color: white;font-size: larger;">Humidity (%)</label>
+                        <!-- <input type="number" id="humidity" name="humidity" required> -->
+                        <input type="number" id="humidity" name="humidity" required value="{{ session.get('humidity', '') }}">
+                    </div>
+                    <!-- <div class="input-group">
+                        <label for="pH" style="color: white;font-size: larger;">pH</label>
+                        <input type="number" id="ph_level" name="pH" step="0.1" required>
+                    </div> -->
+                    <!-- <div class="input-group">
+                        <label for="rainfall" style="color: white;font-size: larger;">Rainfall (mm)</label>
+                        <input type="number" id="rainfall" name="rainfall" required>
+                    </div> -->
+                    <!-- <div class="input-group">
+                        <label for="crop type" style="color: white;font-size: larger;">crop type</label>
+                        <input type="text" id="crop type" name="crop type" required>
+                    </div> -->
+                    
+                    <div class="input-group">
+                        <label for="moisture" style="color: white;font-size: larger;">Moisture</label>
+                        <!-- <input type="number" id="Moisture" name="Moisture" required> -->
+                        <input type="number" id="Moisture" name="Moisture" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="soil_type" style="color: white; font-size: larger;">Soil Type</label>
+                        <select id="crop_type" name="soil_type" required  style="width: 100%;">
+                            <option value="">Select</option>
+                            <option value="21">Loaamy</option>
+                            <option value="20">Sandy</option>
+                            <option value="19">Red</option>
+                            
+                        </select>
+                    </div>
+
+                    
+                    </div>
+
+
+                    <div class="input-group">
+                        <label for="crop_type" style="color: white; font-size: larger;">Crop Type</label>
+                        <select id="crop_type" name="crop_type" required  style="width: 100%;">
+                            <option value="">Select</option>
+                            <option value="10">paddy</option>
+                            <option value="12">Cotton</option>
+                            <option value="9">Wheat</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                    
+
+
+                </div>
+                <button type="submit">Recommend Fertilizer</button>
+                <!-- <div class="suggest"> -->
+                    <!-- <a href="/suggest">
+                <button class="show-suggestions" >Suggestions</button>
+            </a> -->
+            <!-- </div> -->
+            
+                </form>
+                <!-- <a href="/suggest"> -->
+                    <!-- <button class="show-suggestions" >Suggestions</button> -->
+                    <!-- suggest -->
+                <!-- </a> -->
+                <button onclick="document.location='/suggest'">suggest</button>
+
+                <div class="prediction-result">
+                    {% if prediction %}
+                    <h2>Prediction: {{prediction}}</h2>
+                    <!-- <p>{{ prediction }}</p> -->
+                    {% endif %}
+                </div>
+
+        </article>
+
+        <!-- fertilizer_recommendation.html -->
+<!-- <button id="show-suggestions">Show Suggestions</button> -->
+
+<!-- Empty div to display suggestions -->
+<!-- <div id="suggestions-box" style="display: none;"></div> -->
+
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const showSuggestionsButton = document.getElementById('show-suggestions');
+        const suggestionsBox = document.getElementById('suggestions-box');
+
+        showSuggestionsButton.addEventListener('click', function () {
+            // Replace this with logic to retrieve and populate suggestions
+            const selectedFertilizer = "Fertilizer A";  // Example
+            const suggestions = getSuggestions(selectedFertilizer);
+
+            // Clear previous suggestions and display new ones
+            suggestionsBox.innerHTML = '';
+            if (suggestions.length > 0) {
+                suggestionsBox.style.display = 'block';
+                suggestions.forEach(function (suggestion) {
+                    const suggestionItem = document.createElement('p');
+                    suggestionItem.textContent = suggestion;
+                    suggestionsBox.appendChild(suggestionItem);
+                });
+            } else {
+                // If no suggestions, hide the suggestions box
+                suggestionsBox.style.display = 'none';
+            }
+        });
+
+        // Function to retrieve suggestions based on the selected fertilizer
+        function getSuggestions(selectedFertilizer) {
+            // Implement logic to retrieve suggestions based on the selected fertilizer
+            // Example:
+            if (selectedFertilizer === 'Fertilizer A') {
+                return ["Suggestion 1 for Fertilizer A", "Suggestion 2 for Fertilizer A"];
+            } else if (selectedFertilizer === 'Fertilizer B') {
+                return ["Suggestion 1 for Fertilizer B", "Suggestion 2 for Fertilizer B"];
+            }
+            // Add more conditions as needed
+
+            // If no suggestions are found for the selected fertilizer, return an empty array
+            return [];
+        }
+    });
+</script> -->
+
+
+
+</body>
+</html>

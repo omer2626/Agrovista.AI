@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/pest.css"> 
+    <title>Pest Detection</title>
+</head>
+<body>
+    <section class="crop__disease"> 
+        <article class="crop__disease__content">
+            <div class="heading">
+                <h1>Pest Detection</h1>
+            </div>
+            <form id="upload-form" action="/pest_detection" method="post" enctype="multipart/form-data">
+                
+                <input type="file" id="image-input" name="image" accept="image/*" required>
+                
+                <button type="submit">Detect Pest</button>
+            </form>
+            <div id="result">
+                {% if prediction %}
+                <p>Prediction: {{ prediction }}</p>
+                {% endif %}
+            </div>
+        </article>
+    </section>
+</body>
+</html>

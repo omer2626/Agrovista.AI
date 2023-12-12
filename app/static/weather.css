@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* background-color: #f4f4f4; */
+    background-image: url('../static/weather.jpg'); /* Replace 'background.jpg' with your image path */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+
+header {
+    background-color: #585858cf;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    gap:20px;
+}
+
+.weather-card {
+    background-color: #7e8b8ccf;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    text-align: center;
+    color:white
+}
+
+.temperature {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    color:white
+}
+
+.description {
+    margin: 0;
+    color: white
+}

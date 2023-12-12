@@ -1,0 +1,104 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/cropdisease.css"> 
+  
+</head>
+<body>
+      <section class="crop__disease"> 
+        <article class="crop__disease__content">
+            <div class="heading">
+            <h1> Crop Disease Prediction</h1>
+        </div>
+        <form action="/cropdisease" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Detect Disease</button>
+        </form>
+
+        </article>
+      </section>
+
+</body> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/cropdisease.css">
+    <title>Crop Disease Prediction</title>
+</head>
+<body>
+    <section class="crop__disease"> 
+        <article class="crop__disease__content">
+            <div class="heading">
+                <h1>Crop Disease Prediction</h1>
+            </div>
+            <form id="upload-form">
+                <input type="file" id="image-input" accept="image/*" required>
+                <button type="button" onclick="uploadImage()">Detect Disease</button>
+            </form>
+            <div id="result"></div>
+        </article>
+    </section>
+    <script>
+        function uploadImage() {
+            const fileInput = document.getElementById('image-input');
+            const resultDiv = document.getElementById('result');
+
+            if (fileInput.files.length > 0) {
+                const formData = new FormData();
+                formData.append('image', fileInput.files[0]);
+
+                fetch('/cropdisease', {
+                    method: 'POST',
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Display the result in the 'result' div
+                    resultDiv.textContent = JSON.stringify(data);
+                })
+                .catch(error => {
+                    console.error(error);
+                    resultDiv.textContent = 'Error occurred during prediction.';
+                });
+            } else {
+                resultDiv.textContent = 'Please select an image to upload.';
+            }
+        }
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/cropdisease.css"> 
+    <title>Crop Disease Prediction</title>
+</head>
+<body>
+    <section class="crop__disease"> 
+        <article class="crop__disease__content">
+            <div class="heading">
+                <h1>Crop Disease Prediction</h1>
+            </div>
+            <form id="upload-form" action="/cropdisease" method="post" enctype="multipart/form-data">
+                <input type="file" id="image-input" name="image" accept="image/*" required>
+                <button type="submit">Detect Disease</button>
+            </form>
+            <div id="result">
+                {% if prediction1 %}
+                <p>Prediction: {{ prediction1 }}</p>
+                {% endif %}
+            </div>
+        </article>
+    </section>
+</body>
+</html>
