@@ -12,6 +12,8 @@ import numpy as np
 import joblib
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image
+from twilio.rest import Client
+
 
 
 app = Flask(__name__)
@@ -66,6 +68,50 @@ def signup():
     flash("User signed up successfully. Please log in.")
     return redirect("/login")
  return render_template("signup.html")
+
+
+# #twilio code
+# account_sid = 'ACd68227431223553b399f6fa078ed437d'
+# auth_token = '30e945e676a0889cec5574818ba447d7'
+# client = Client(account_sid, auth_token)
+
+# def send_whatsapp_notification(to, message_body):
+#     try:
+#         # Send WhatsApp message
+#         message = client.messages.create(
+#             from_='whatsapp:+14155238886',
+#             body=message_body,
+#             to=f'whatsapp:{to}'
+#         )
+#         print(f"WhatsApp message sent successfully: SID - {message.sid}")
+#         return True  # Return True if message sent successfully
+#     except Exception as e:
+#         print(f"Failed to send WhatsApp message: {str(e)}")
+#         return False  # Return False if message sending fails
+
+# # LOGIN ROUTE
+# @app.route("/login", methods=["GET", "POST"])  
+# def login():
+#     if request.method == "POST":
+#         phone_No = request.form["phone_No"]
+#         password = request.form["password"]
+
+#         # Simulate user authentication (replace this with actual authentication logic)
+#         if phone_No == '+916303355201' and password == '1111':
+#             session["username"] = phone_No
+            
+#             # Call the send_whatsapp_notification function here
+#             if send_whatsapp_notification('recipient_phone_number', "Welcome to the platform! This is a dummy message."):
+#                 flash("WhatsApp message sent successfully")
+#             else:
+#                 flash("Failed to send WhatsApp message")
+            
+#             return redirect("/services")
+
+#         flash("Invalid username or password")
+#         return render_template("login.html")
+
+#     return render_template("login.html")
 
 
 #LOGIN ROUTE....
@@ -135,102 +181,9 @@ def weather():
 
     return render_template('weather.html', forecast_entries=next_4_days_forecast,Location=city)
 
-
-
-#DISEASE PREDICTION.....
-
-
-# disease_classes = ['Apple___Apple_scab',
-#                    'Apple___Black_rot',
-#                    'Apple___Cedar_apple_rust',
-#                    'Apple___healthy',
-#                    'Blueberry___healthy',
-#                    'Cherry_(including_sour)___Powdery_mildew',
-#                    'Cherry_(including_sour)___healthy',
-#                    'Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot',
-#                    'Corn_(maize)___Common_rust_',
-#                    'Corn_(maize)___Northern_Leaf_Blight',
-#                    'Corn_(maize)___healthy',
-#                    'Grape___Black_rot',
-#                    'Grape___Esca_(Black_Measles)',
-#                    'Grape___Leaf_blight_(Isariopsis_Leaf_Spot)',
-#                    'Grape___healthy',
-#                    'Orange___Haunglongbing_(Citrus_greening)',
-#                    'Peach___Bacterial_spot',
-#                    'Peach___healthy',
-#                    'Pepper,_bell___Bacterial_spot',
-#                    'Pepper,_bell___healthy',
-#                    'Potato___Early_blight',
-#                    'Potato___Late_blight',
-#                    'Potato___healthy',
-#                    'Raspberry___healthy',
-#                    'Soybean___healthy',
-#                    'Squash___Powdery_mildew',
-#                    'Strawberry___Leaf_scorch',
-#                    'Strawberry___healthy',
-#                    'Tomato___Bacterial_spot',
-#                    'Tomato___Early_blight',
-#                    'Tomato___Late_blight',
-#                    'Tomato___Leaf_Mold',
-#                    'Tomato___Septoria_leaf_spot',
-#                    'Tomato___Spider_mites Two-spotted_spider_mite',
-#                    'Tomato___Target_Spot',
-#                    'Tomato___Tomato_Yellow_Leaf_Curl_Virus',
-#                    'Tomato___Tomato_mosaic_virus',
-#                    'Tomato___healthy']
-
-# disease_model_path = r'C:\Users\NHI643\Desktop\mini_project\app\plant_disease.pth'
-# disease_model = ResNet9(3, len(disease_classes))
-# disease_model.load_state_dict(torch.load(
-#     disease_model_path, map_location=torch.device('cpu')))
-
-# def predict_image(img, model=disease_model):
-#     transform = transforms.Compose([
-#         transforms.Resize(256),
-#         transforms.ToTensor(),
-#     ])
-#     image = Image.open(io.BytesIO(img))
-#     img_t = transform(image)
-#     img_u = torch.unsqueeze(img_t, 0)
-
-#     # Get predictions from model
-#     yb = model(img_u)
-#     # Pick index with highest probability
-#     _, preds = torch.max(yb, dim=1)
-#     prediction = disease_classes[preds[0].item()]
-#     # Retrieve the class label
-#     return prediction
-
-
-
-
-# @app.route('/cropdisease' ,methods=["GET", "POST"])
-# def disease():
-
-#     if request.method == 'POST':
-#         if 'file' not in request.files:
-#          return redirect(request.url)
-#         file = request.files.get('file')
-#         if not file:
-#             return render_template('cropdisease.html')
-#         try:
-#             img = file.read()
-
-#             prediction = predict_image(img)
-
-#             prediction = Markup(str(disease_dic[prediction]))
-#             print(prediction)
-#             return render_template('cropdisease.html', prediction=prediction)
-        
-#         except:
-#             pass
-#     return render_template('cropdisease.html')
-
-
-
 #CROP RECOMMENDATION.....
 
-crop_recommendation_model_path = r'C:\Users\NHI643\Desktop\mini_project\app\RandomForest.pkl'
+crop_recommendation_model_path = r'C:\Users\NHI643\Desktop\projects\mini_project\app\RandomForest.pkl'
 crop_recommendation_model = pickle.load(
     open(crop_recommendation_model_path, 'rb'))
 
@@ -280,7 +233,7 @@ def recommendation():
 #FERTILIZER RECOMMENDATION....
 #The values are stored in session and getting render directly from crop recommendation model
 
-model1 = joblib.load(r'C:\Users\NHI643\Desktop\mini_project\app\Fertilizer.sav')
+model1 = joblib.load(r'C:\Users\NHI643\Desktop\projects\mini_project\app\FertilizerRec2.sav')
 
 @app.route('/fertilizer_recommendation', methods=['GET', 'POST'])
 def fertilizer():
@@ -306,7 +259,7 @@ def fertilizer():
 
 #Disease Prediction....
 
-model2 = tf.keras.models.load_model(r'C:\Users\NHI643\Desktop\mini_project\app\rice.hdf5')
+model2 = tf.keras.models.load_model(r'C:\Users\NHI643\Desktop\projects\mini_project\app\rice.hdf5')
 
 # def preprocess_image(image_path):
 #     img = image.load_img(image_path, target_size=(180, 180))
@@ -324,41 +277,6 @@ def preprocess_image(image_data1):
     img_preprocessed1 = img_array1 / 255.0
     return img_preprocessed1
 
-
-# def predict(image_data):
-#     try:
-#         img = preprocess_image(image_data)
-#         prediction = model.predict(img)
-#         # return {'prediction': 'Replace this with the actual prediction'}
-#         return prediction
-
-#     except Exception as e:
-#         return {'error': str(e)}
-    
-# @app.route('/cropdisease', methods=['GET','POST'])
-# def predict_endpoint():
-#     try:
-#         image_data = request.files['image'].read()
-#         prediction = predict(image_data)
-
-#         return jsonify(prediction)
-
-#     except Exception as e:
-#         return jsonify({'error': str(e)})
-
-
-
-
-# def predict(image_data):
-#     try:
-#         img = preprocess_image(image_data)
-#         prediction = model.predict(img)
-#         predicted_class_index = np.argmax(prediction)
-#         # return prediction.tolist()  # Convert to a list for JSON serialization
-#         predicted_class_label = disease_labels[predicted_class_index]
-#         # return  predicted_class_index
-#         return predicted_class_label
-
 disease_labels = ["Bacterial disease", "Smut", "Brown Spot"]
 
 # Your image preprocessing and prediction code here
@@ -373,59 +291,6 @@ def predict(image_data1):
 
     except Exception as e:
         return {'error': str(e)}
-
-# @app.route('/cropdisease', methods=['GET','POST'])
-# def predict_endpoint():
-#     try:
-#         # Ensure that the request contains a file named 'image'
-#         if 'image' not in request.files:
-#             return jsonify({'error': 'No image file provided'})
-
-#         image_file = request.files['image']
-
-#         # Check if the file has a valid extension (you can modify this as needed)
-#         allowed_extensions = {'jpg', 'jpeg', 'png', 'gif'}
-#         if '.' not in image_file.filename or image_file.filename.split('.')[-1].lower() not in allowed_extensions:
-#             return jsonify({'error': 'Invalid file format. Supported formats: jpg, jpeg, png, gif'})
-
-#         image_data = image_file.read()
-#         prediction = predict(image_data)
-
-#         return jsonify({'prediction': prediction})
-
-#     except Exception as e:
-#         # Print the error to the console for debugging
-#         print(f"An error occurred: {str(e)}")
-#         return jsonify({'error': 'An error occurred while processing the request'})
-
-
-# @app.route('/cropdisease', methods=['GET', 'POST'])
-# def predict_endpoint():
-#     if request.method == 'POST':
-#         try:
-#             if 'image' not in request.files:
-#                 return jsonify({'error': 'No image file provided'})
-
-#             image_file = request.files['image']
-#             allowed_extensions = {'jpg', 'jpeg', 'png', 'gif'}
-            
-#             if ('.' not in image_file.filename or 
-#                 image_file.filename.split('.')[-1].lower() not in allowed_extensions):
-#                 return jsonify({'error': 'Invalid file format. Supported formats: jpg, jpeg, png, gif'})
-
-#             image_data = image_file.read()
-#             prediction = predict(image_data)
-
-#             # Render the HTML template with the prediction result
-#             return render_template('cropdisease.html', prediction=prediction)
-
-#         except Exception as e:
-#             # Print the error to the console for debugging
-#             print(f"An error occurred: {str(e)}")
-#             return jsonify({'error': 'An error occurred while processing the request'})
-
-#     # If it's a GET request or no image has been uploaded yet, render the form
-#     return render_template('cropdisease.html', prediction=None)
 
 
 @app.route('/cropdisease', methods=['GET', 'POST'])
@@ -462,7 +327,7 @@ def predict_endpoint():
 #PEST DETECTION....
 #The image should be in size 244/244 and only jpg, png is accepted
 #The pest and disease model got overrided due to the same image processing functions are used for both...
-model3 = tf.keras.models.load_model(r'C:\Users\NHI643\Desktop\mini_project\app\pest.hdf5')
+model3 = tf.keras.models.load_model(r'C:\Users\NHI643\Desktop\projects\mini_project\app\pest.hdf5')
 
 
 def preprocess_image1(image_path):
@@ -516,34 +381,6 @@ def predict_pest():
 
 
     return render_template('pest_detection.html', prediction=None)
-
-
-
-
-
-
-
-
-# @app.route('/pest_detection', methods=['POST'])
-# def predict_pest():
-#     try:
-#         # Get the image data from the frontend
-#         image_data = request.files['image'].read()
-
-#         # Use your pest detection model to make predictions on the image_data
-#         img = preprocess_image(io.BytesIO(image_data))
-#         prediction = model.predict(img)
-
-#         # You can format the prediction result as needed
-#         # In this example, we return the predicted class index as an integer
-#         predicted_class_index = np.argmax(prediction)
-
-#         return render_template('pest_detection.html', predicted_class_index=predicted_class_index)
-
-#     except Exception as e:
-#         return render_template('error.html', error_message=str(e))
-
-
 
 
 #LOGOUT ROUTE....
