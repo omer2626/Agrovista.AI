@@ -77,5 +77,38 @@
             </div>
         </div>
         </div>
+        
+        <div class="chatbot-container">
+            <img src="../static/bot_image.png" alt="Chatbot" class="chatbot-icon" onclick="toggleChatbot()">
+            <div class="chatbot-content" id="chatbotContent">
+                <div class="chatbot-header">
+                    <span>AgroVista Bot</span>
+                    <span class="close-btn" onclick="toggleChatbot()">&times;</span>
+                </div>
+                <div class="messages">
+                    <!-- Messages will be added here -->
+                </div>
+                <div class="input-area">
+                    <input type="text" placeholder="Type your message...">
+                    <button>Send</button>
+                </div>
+            </div>
+        </div>
+        
+        
     </article>
 </section>
+<script>
+    function toggleChatbot() {
+    var chatbotContent = document.getElementById("chatbotContent");
+    var chatbotIcon = document.querySelector(".chatbot-icon");
+    if (chatbotContent.style.display === "none" || chatbotContent.style.display === "") {
+        chatbotContent.style.display = "flex";
+        chatbotIcon.style.display = "none";
+    } else {
+        chatbotContent.style.display = "none";
+        chatbotIcon.style.display = "block";
+    }
+}
+
+</script>
