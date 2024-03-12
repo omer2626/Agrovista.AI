@@ -85,13 +85,23 @@
                     <span>AgroVista Bot</span>
                     <span class="close-btn" onclick="toggleChatbot()">&times;</span>
                 </div>
-                <div class="messages">
-                    <!-- Messages will be added here -->
+                <div class="messages" id="botMessages">
+                    <!-- Bot messages will be added here -->
+                </div>
+                <div class="message user-message">
+                    <!-- <span class="message-icon user-icon">&#128100;</span> Example user icon -->
+                    <!-- <span class="message-text">Your message here</span> -->
+                </div>
+                
+                <div class="message bot-message">
+                    <!-- <span class="message-icon bot-icon">&#128187;</span> Example bot icon -->
+                    <!-- <span class="message-text">Bot response here</span> -->
                 </div>
                 <div class="input-area">
-                    <input type="text" placeholder="Type your message...">
-                    <button>Send</button>
+                    <input type="text" id="userInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+                    <button onclick="sendMessage()">Send</button>
                 </div>
+                
             </div>
         </div>
         
@@ -110,5 +120,52 @@
         chatbotIcon.style.display = "block";
     }
 }
+
+
+var questionsAndAnswers = {
+    "What is the best time to plant wheat?": "The best time to plant wheat is in early to mid-autumn.",
+    "How much water does rice require?": "Rice requires about 1 to 1.5 inches of water per week.",
+    "What are the common pests in corn crops?": "Common pests in corn crops include corn borers, corn earworms, and rootworms.",
+    "What is crop rotation?": "Crop rotation is the practice of growing different types of crops in the same area in sequential seasons.",
+    "How can I improve soil fertility?": "Soil fertility can be improved by adding organic matter, using cover crops, and practicing crop rotation.",
+    "What is the difference between organic and inorganic fertilizers?": "Organic fertilizers are derived from natural sources and release nutrients slowly, while inorganic fertilizers are synthetic and release nutrients quickly.",
+    "How do I prevent plant diseases?": "Prevent plant diseases by choosing disease-resistant varieties, practicing crop rotation, and maintaining good sanitation.",
+    "What are the benefits of using mulch?": "Mulch helps retain soil moisture, suppress weeds, and regulate soil temperature.",
+    "How can I control weeds in my garden?": "Control weeds by mulching, hand weeding, or using herbicides judiciously.",
+    "What is the best way to harvest tomatoes?": "The best way to harvest tomatoes is to pick them when they are firm and fully colored."
+};
+
+function sendMessage() {
+    var userInput = document.getElementById("userInput").value;
+    var botMessages = document.getElementById("botMessages");
+    
+    var userMessage = document.createElement("div");
+    userMessage.textContent = userInput;
+    userMessage.className = "message user-message";
+    botMessages.appendChild(userMessage);
+
+    setTimeout(function() {
+        var botResponse = document.createElement("div");
+        if (questionsAndAnswers[userInput]) {
+            botResponse.textContent = questionsAndAnswers[userInput];
+        } else {
+            botResponse.textContent = "I'm sorry, I don't have an answer to that question.";
+        }
+        botResponse.className = "message bot-message";
+        botMessages.appendChild(botResponse);
+
+        // Scroll to the bottom of the messages container
+        botMessages.scrollTop = botMessages.scrollHeight;
+    }, 1000); // Adjust the delay as needed
+
+    document.getElementById("userInput").value = ""; // Clear input field
+}
+function handleKeyPress(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+}
+
+
 
 </script>

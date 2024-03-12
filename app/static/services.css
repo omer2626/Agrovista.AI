@@ -177,6 +177,29 @@ h2{
 
 .close-btn {
   cursor: pointer;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
 }
+
+.message {
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.user-message {
+  background-color: #f0f0f0;
+  align-self: flex-end;
+}
+
+.bot-message {
+  background-color: #d1e8d1;
+  align-self: flex-start;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
