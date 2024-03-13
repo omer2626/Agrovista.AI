@@ -121,7 +121,7 @@ h2{
 
 .chatbot-content {
     display: none;
-    height: 300px;
+    height: 370px;
     flex-direction: column;
     justify-content: space-between;
 }
