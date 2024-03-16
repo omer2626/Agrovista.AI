@@ -9,7 +9,7 @@ function sendMessage() {
 
     setTimeout(function() {
         var botResponse = document.createElement("div");
-        var response = questionsAndAnswers[userInput] || "I'm sorry, I don't have an answer to that question.";
+        var response = questionsAndAnswers[userInput] || "I can't reach you, please reframe again.";
         botResponse.textContent = response;
         botResponse.className = "message bot-message";
         botMessages.appendChild(botResponse);

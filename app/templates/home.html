@@ -93,9 +93,52 @@
           <p>&copy; 2023 AgroVista. All rights reserved.</p>
         </div>
       </section>
+      <!-- <button onclick="startListening()">Start Listening</button> -->
+      <!-- <script>
+          const recognition = new webkitSpeechRecognition();
+          recognition.lang = 'en-US';
+          recognition.continuous = true;
+          recognition.interimResults = true;
+  
+          recognition.onresult = function(event) {
+              const last = event.results.length - 1;
+              const command = event.results[last][0].transcript.trim().toLowerCase();
+  
+              switch(command) {
+                  case 'go to service':
+                      window.location.href = 'services';
+                      break;
+                  case 'go to login':
+                      window.location.href = 'login';
+                      break;
+                  case 'scroll up':
+                      window.scrollBy(0, -100);
+                      break;
+                  case 'scroll down':
+                      window.scrollBy(0, 100);
+                      break;
+                  case 'scroll to top':
+                      window.scrollTo(0, 0);
+                      break;
+                  case 'scroll to bottom':
+                      window.scrollTo(0, document.body.scrollHeight);
+                      break;
+                  default:
+                      console.log('Command not recognized:', command);
+              }
+          };
+          recognition.onend = function() {
+        console.log('Restarting recognition...');
+        recognition.start();
+    };
 
+    function startListening() {
+        recognition.start();
+    }
+         
+      </script> -->
 
-
+      <script src="../static/voicebot.js"></script>
 </body>
 
 </html>
